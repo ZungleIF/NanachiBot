@@ -1,0 +1,3 @@
+/home/zungleif/NanachiBot/test-build/websocketpp-download/CMakeFiles/rebuild_cache.dir
+/home/zungleif/NanachiBot/test-build/websocketpp-download/CMakeFiles/websocketpp-download.dir
+/home/zungleif/NanachiBot/test-build/websocketpp-download/CMakeFiles/edit_cache.dir

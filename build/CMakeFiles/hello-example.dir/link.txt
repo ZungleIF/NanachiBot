@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/hello-example.dir/example0.cpp.o  -o hello-example  sleepy-discord/sleepy_discord/libsleepy-discord.a lib/libcpr.a /usr/lib/x86_64-linux-gnu/libcurl.so -lssl -lcrypto -pthread 

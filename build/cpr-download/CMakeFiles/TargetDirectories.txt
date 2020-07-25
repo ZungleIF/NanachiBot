@@ -1,0 +1,3 @@
+/home/zungleif/sleepy-discord/examples/hello/build/cpr-download/CMakeFiles/rebuild_cache.dir
+/home/zungleif/sleepy-discord/examples/hello/build/cpr-download/CMakeFiles/cpr-download.dir
+/home/zungleif/sleepy-discord/examples/hello/build/cpr-download/CMakeFiles/edit_cache.dir

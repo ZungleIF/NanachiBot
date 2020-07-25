@@ -1,0 +1,3 @@
+/home/zungleif/sleepy-discord/examples/hello/build/asio-download/CMakeFiles/rebuild_cache.dir
+/home/zungleif/sleepy-discord/examples/hello/build/asio-download/CMakeFiles/asio-download.dir
+/home/zungleif/sleepy-discord/examples/hello/build/asio-download/CMakeFiles/edit_cache.dir
