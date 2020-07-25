@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/NanachiBot.dir/main.cpp.o  -o NanachiBot  sleepy-discord/sleepy_discord/libsleepy-discord.a lib/libcpr.a /usr/lib/x86_64-linux-gnu/libcurl.so -lssl -lcrypto -pthread 
