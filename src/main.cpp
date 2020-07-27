@@ -3,9 +3,9 @@
 #include <dirent.h>
 #include <random>
 #include <iterator>
+#include <map>
 
-
-#define PRE "~"
+#define PRE std::string("~")
 #define BOT_TOKEN "NTM0MzMzMzUxOTY0ODM1ODQx.XwMpIg.b9v0AH8NBNPJMK14qddaed_LPdY"
 
 template<typename Iter, typename RandomGenerator>
@@ -41,15 +41,17 @@ constexpr std::size_t operator""_(const char *s, std::size_t) {
     return hash(s);
 }
 
+void NanachiBot::init() {
+
+}
 void NanachiBot::init_file_read() {
-      read_directory("pictures/nanachi", fileListNanachi);
-      read_directory("pictures/made in abyss", fileListMIA);
+      read_directory("pictures/nanachi", fileList["nanachi"]);
+      read_directory("pictures/made in abyss", fileList["mia"]);
 }
 void NanachiBot::onReady(SleepyDiscord::Ready readyData) {
       updateStatus("try ~nanachi");
 }
 void NanachiBot::onServer(SleepyDiscord::Server server) {
-
 }
 void NanachiBot::onMessage(SleepyDiscord::Message message) {
       if (message.startsWith(PRE)) {
@@ -61,25 +63,25 @@ void NanachiBot::onMessage(SleepyDiscord::Message message) {
                         sendMessage(channel, "yo my nibba " +  message.author.username  + " wassup");
                   } break;
                   case "nanachi"_ : {
-                        std::string fileName = *select_randomly(fileListNanachi.begin(), fileListNanachi.end());
+                        std::string fileName = *select_randomly(fileList["nanachi"].begin(), fileList["nanachi"].end());
                         uploadFile(channel, "pictures/nanachi/" + fileName, "");
                         print_file(fileName);
                   } break;
                   case "mia"_ : {
-                        std::string fileName = *select_randomly(fileListMIA.begin(), fileListMIA.end());
+                        std::string fileName = *select_randomly(fileList["mia"].begin(), fileList["mia"].end());
                         uploadFile(channel, "pictures/made in abyss/" + fileName, "");
                         print_file(fileName);
                   } break;
                   case "help"_ : {
-                        SleepyDiscord::Embed embed;
-                        embed.title = "NanachiBot";
-                        embed.description = 
-                        "Help for NanachiBot Current prefix is `~`";
+                        SleepyDiscord::Embed helpEmbed;
                         SleepyDiscord::EmbedField aField;
+                        helpEmbed.title = "NanachiBot";
+                        helpEmbed.description = 
+                        "Help for NanachiBot Current prefix is `" + PRE + "`";
                         aField.name = "RANDOM PICTURES";
                         aField.value = "`nanachi` `mia`";
-                        embed.fields.push_back(aField);
-                        sendMessage(channel, "", embed);
+                        helpEmbed.fields.push_back(aField);
+                        sendMessage(channel, "", helpEmbed);
                   } break;
             }
       }

@@ -1,6 +1,6 @@
 #pragma once
 #include <sleepy_discord/sleepy_discord.h>
-
+#include <map>
 
 inline
 bool equals(const std::string &str1, const std::string &str2) {
@@ -22,6 +22,7 @@ public:
     // using inherited class constructor 
     using SleepyDiscord::DiscordClient::DiscordClient;
 
+    void init();
     void init_file_read();
     void onReady(SleepyDiscord::Ready readyData) override;
     void onServer(SleepyDiscord::Server server) override;
@@ -29,7 +30,8 @@ public:
 
 private:
     void print_file(const std::string &fileName);
-    std::vector<std::string> fileListNanachi;
-    std::vector<std::string> fileListMIA;
+    std::map<std::string, std::vector<std::string>> fileList;
+    SleepyDiscord::Embed helpEmbed;
+    SleepyDiscord::EmbedField aField;
 };
 
