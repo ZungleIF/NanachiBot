@@ -6,7 +6,6 @@ inline bool equals(const std::string &str1, const std::string &str2) {
       return str1 == str2;
 }
 
-
 void read_directory(const std::string &name, std::vector<std::string> &v);
 
 

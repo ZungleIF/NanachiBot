@@ -7,7 +7,7 @@ if(NOT SLEEPY_DISCORD_CMAKE)
 endif()
 
 add_executable(NanachiBot
-	src/main.cpp 
+	src/main.cpp src/myrandom.cpp
 )
 
 target_link_libraries(NanachiBot

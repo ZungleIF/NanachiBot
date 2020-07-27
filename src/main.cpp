@@ -3,9 +3,7 @@
 #include "myrandom.h"
 #include <sys/types.h>
 #include <dirent.h>
-#include <map>
-#include <random>
-#include <iterator>
+
 
 #define PRE std::string("~")
 #define BOT_TOKEN "NTM0MzMzMzUxOTY0ODM1ODQx.XwMpIg.b9v0AH8NBNPJMK14qddaed_LPdY"
