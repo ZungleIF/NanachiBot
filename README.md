@@ -21,7 +21,7 @@ git clone https://github.com/yourWaifu/sleepy-discord.git
 ```
 Build using CMake
 ```
-cd build
+mkdir build && cd build
 sudo cmake .. -G "Unix Makefiles"
 sudo make
 ```
