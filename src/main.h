@@ -2,20 +2,13 @@
 #include <sleepy_discord/sleepy_discord.h>
 #include <map>
 
-inline
-bool equals(const std::string &str1, const std::string &str2) {
+inline bool equals(const std::string &str1, const std::string &str2) {
       return str1 == str2;
 }
 
-template<typename Iter, typename RandomGenerator>
-Iter select_randomly(Iter start, Iter end, RandomGenerator &g);
-template<typename Iter>
-Iter select_randomly(Iter start, Iter end);
+
 void read_directory(const std::string &name, std::vector<std::string> &v);
 
-constexpr std::size_t hash(const char *s, int off = 0);
-inline
-constexpr std::size_t operator""_(const char *s, std::size_t);
 
 class NanachiBot : public SleepyDiscord::DiscordClient {
 public:
@@ -32,6 +25,6 @@ private:
     void print_file(const std::string &fileName);
     std::map<std::string, std::vector<std::string>> fileList;
     SleepyDiscord::Embed helpEmbed;
-    SleepyDiscord::EmbedField aField;
+    SleepyDiscord::EmbedField helpField;
 };
 
