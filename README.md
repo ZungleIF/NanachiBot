@@ -27,8 +27,8 @@ sudo make
 ```
 Now you can execute NanachiBot by `./NanachiBot`
 
-**TODO:**
+## **TODO:**
 - Create nanachi maker
   - Something like Tamagotchi, must use database?
 - Add config file
-- Add voice chat ability
+- Add voice chat function

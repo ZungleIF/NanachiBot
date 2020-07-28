@@ -7,8 +7,9 @@ inline bool equals(const std::string &str1, const std::string &str2) {
 }
 
 void read_directory(const std::string &name, std::vector<std::string> &v);
-
-
+void read_config(const std::string configFile);
+std::string prefix;
+std::string bot_token;
 class NanachiBot : public SleepyDiscord::DiscordClient {
 public:
     // using inherited class constructor 
@@ -21,6 +22,7 @@ public:
 	void onMessage(SleepyDiscord::Message message) override;
 
 private:
+
     void print_file(const std::string &fileName);
     std::map<std::string, std::vector<std::string>> fileList;
     SleepyDiscord::Embed helpEmbed;

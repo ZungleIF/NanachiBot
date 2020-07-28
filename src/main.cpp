@@ -1,12 +1,10 @@
 #include "main.h"
 #include "hash.h"
 #include "myrandom.h"
+#include "config.h"
 #include <sys/types.h>
 #include <dirent.h>
 
-
-#define PRE std::string("~")
-#define BOT_TOKEN "NTM0MzMzMzUxOTY0ODM1ODQx.XwMpIg.b9v0AH8NBNPJMK14qddaed_LPdY"
 
 
 template<typename Iter, typename RandomGenerator>
@@ -34,14 +32,18 @@ void read_directory(const std::string &name, std::vector<std::string> &v) {
       }
       closedir(dirp);
 }
-
+void read_config(const std::string configFile) {
+      Config config(configFile.c_str());
+      config.value("prefix", prefix);
+      config.value("bot_token", bot_token);
+}
 
 void NanachiBot::init() {
       helpEmbed.title = "NanachiBot";
       helpEmbed.description = 
-      "Help for NanachiBot\nCurrent prefix is `" + PRE + "`";
+      "Help for NanachiBot\nCurrent prefix is `" + prefix + "`";
       helpField.name = "SPAWN RANDOM PICTURES";
-      helpField.value = "`nanachi` `mia`";
+      helpField.value = "`nanachi` `나나치` `mia` `메인어`";
       helpEmbed.fields.push_back(helpField);
 }
 void NanachiBot::init_file_read() {
@@ -49,13 +51,13 @@ void NanachiBot::init_file_read() {
       read_directory("pictures/made in abyss", fileList["mia"]);
 }
 void NanachiBot::onReady(SleepyDiscord::Ready readyData) {
-      updateStatus("try ~help");
+      updateStatus("try" + prefix + "help");
 }
 void NanachiBot::onServer(SleepyDiscord::Server server) {
 
 }
 void NanachiBot::onMessage(SleepyDiscord::Message message) {
-      if (message.startsWith(PRE)) {
+      if (message.startsWith(prefix)) {
             auto channel = message.channelID;
             std::string command = message.content.substr(1);
             switch(hash(command.c_str())){
@@ -63,12 +65,14 @@ void NanachiBot::onMessage(SleepyDiscord::Message message) {
                   case "hello"_ : {
                         sendMessage(channel, "yo my nibba " +  message.author.username  + " wassup");
                   } break;
-                  case "nanachi"_ : {
+                  case "nanachi"_ :
+                  case "나나치"_ : {
                         std::string fileName = *select_randomly(fileList["nanachi"].begin(), fileList["nanachi"].end());
                         uploadFile(channel, "pictures/nanachi/" + fileName, "");
                         print_file(fileName);
                   } break;
-                  case "mia"_ : {
+                  case "mia"_ : 
+                  case "메인어"_ : {
                         std::string fileName = *select_randomly(fileList["mia"].begin(), fileList["mia"].end());
                         uploadFile(channel, "pictures/made in abyss/" + fileName, "");
                         print_file(fileName);
@@ -85,7 +89,8 @@ void NanachiBot::print_file(const std::string &fileName) {
 
 
 int main() {
-	NanachiBot client(BOT_TOKEN, SleepyDiscord::USER_CONTROLED_THREADS);
+      read_config("config.txt");
+	NanachiBot client(bot_token, SleepyDiscord::USER_CONTROLED_THREADS);
       client.init();
       client.init_file_read();
       client.run();
