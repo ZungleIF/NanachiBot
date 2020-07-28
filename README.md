@@ -1,7 +1,7 @@
 # NanachiBot
- A personal Discord Bot for me. 
- The only functionality currently is just uploading some Made in Abyss pictures.
-## How to build
+ A personal Discord Bot for me, using Sleepy-Discord C++ Library
+ The only functions currently are just uploading some Made in Abyss pictures.
+## How to build (On Unix)
 ```
 git clone https://github.com/ZungleIF/NanachiBot.git
 ```
