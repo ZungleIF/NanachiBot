@@ -31,3 +31,4 @@ std::string Config::value(const std::string key, std::string &input) {
     input = configMap[key];
     return configMap[key];
 }
+

@@ -1,3 +1,4 @@
 # Config for NanachiBot
 prefix = 
 bot_token = 
+owner_id =
