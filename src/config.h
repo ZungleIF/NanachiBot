@@ -4,7 +4,7 @@
 
 std::string eraseSpace(std::string str);
 
-class Config {
+struct Config {
     public:
     Config(const char* configFile);
     std::string value(const std::string key, std::string &input);

@@ -14,9 +14,7 @@ class NanachiBot : public SleepyDiscord::DiscordClient {
 public:
     // using inherited class constructor 
     using SleepyDiscord::DiscordClient::DiscordClient;
-
     void init();
-    void init_file_read();
     void onReady(SleepyDiscord::Ready readyData) override;
     void onServer(SleepyDiscord::Server server) override;
 	void onMessage(SleepyDiscord::Message message) override;

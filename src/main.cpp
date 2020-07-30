@@ -32,6 +32,7 @@ void read_directory(const std::string &name, std::vector<std::string> &v) {
       }
       closedir(dirp);
 }
+
 void read_config(const std::string configFile) {
       Config config(configFile.c_str());
       config.value("prefix", prefix);
@@ -39,17 +40,22 @@ void read_config(const std::string configFile) {
 }
 
 void NanachiBot::init() {
-      helpEmbed.title = "NanachiBot";
-      helpEmbed.description = 
-      "Help for NanachiBot\nCurrent prefix is `" + prefix + "`";
-      helpField.name = "SPAWN RANDOM PICTURES";
-      helpField.value = "`nanachi` `나나치` `mia` `메인어`";
-      helpEmbed.fields.push_back(helpField);
+      // make an embed for the command '~help'
+      {
+            helpEmbed.title = "NanachiBot";
+            helpEmbed.description = 
+            "Help for NanachiBot\nCurrent prefix is `" + prefix + "`";
+            helpField.name = "SPAWN RANDOM PICTURES";
+            helpField.value = "`nanachi` `나나치` `mia` `메인어`";
+            helpEmbed.fields.push_back(helpField);
+      }
+      // read picture files
+      {
+            read_directory("pictures/nanachi", fileList["nanachi"]);
+            read_directory("pictures/made in abyss", fileList["mia"]);
+      }
 }
-void NanachiBot::init_file_read() {
-      read_directory("pictures/nanachi", fileList["nanachi"]);
-      read_directory("pictures/made in abyss", fileList["mia"]);
-}
+
 void NanachiBot::onReady(SleepyDiscord::Ready readyData) {
       updateStatus("try" + prefix + "help");
 }
@@ -60,7 +66,22 @@ void NanachiBot::onMessage(SleepyDiscord::Message message) {
       if (message.startsWith(prefix)) {
             auto channel = message.channelID;
             std::string command = message.content.substr(1);
-            switch(hash(command.c_str())){
+            std::size_t first = 0;
+            std::vector<std::string> commands;
+            while(true) {
+                  std::size_t spacePos = command.find_first_of(" \n", first);
+                  commands.push_back(command.substr(first, spacePos - first));
+                  first = spacePos + 1;
+                  if(spacePos == std::string::npos) {
+                        break;
+                  }
+            }
+            std::cout << "command: ";
+            for(auto commands_iter : commands) {
+                  std::cout << commands_iter << " ";
+            }
+            std::cout << std::endl;
+            switch(hash(commands[0].c_str())){
                   default : {} break;
                   case "hello"_ : {
                         sendMessage(channel, "yo my nibba " +  message.author.username  + " wassup");
@@ -80,6 +101,9 @@ void NanachiBot::onMessage(SleepyDiscord::Message message) {
                   case "help"_ : {
                         sendMessage(channel, "", helpEmbed);
                   } break;
+                  case "joinserver"_ : {
+                        sendMessage(channel, "https://discord.com/api/oauth2/authorize?client_id=738027262254907433&permissions=1446379089&scope=bot");
+                  } break;
             }
       }
 }
@@ -92,6 +116,5 @@ int main() {
       read_config("config.txt");
 	NanachiBot client(bot_token, SleepyDiscord::USER_CONTROLED_THREADS);
       client.init();
-      client.init_file_read();
       client.run();
 }

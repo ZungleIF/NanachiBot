@@ -1,6 +1,7 @@
 # NanachiBot
  A personal Discord Bot for me, using Sleepy-Discord C++ Library
  The only functions currently are just uploading some Made in Abyss pictures.
+ 
 ## How to build (On Unix)
 ```
 git clone https://github.com/ZungleIF/NanachiBot.git
@@ -26,6 +27,10 @@ sudo cmake .. -G "Unix Makefiles"
 sudo make
 ```
 Now you can execute NanachiBot by `./NanachiBot`
+
+## Current available commands
+### Spawn random picture
+`nanachi` `나나치` `mia` `메인어`
 
 ## **TODO:**
 - Create nanachi maker
