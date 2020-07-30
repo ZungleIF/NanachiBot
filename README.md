@@ -2,6 +2,7 @@
  A personal Discord Bot for me, using Sleepy-Discord C++ Library
  The only functions currently are just uploading some Made in Abyss pictures.
  
+ **[Add this bot on your server](https://discord.com/api/oauth2/authorize?client_id=738027262254907433&permissions=1446379089&scope=bot)**
 ## How to build (On Unix)
 ```
 git clone https://github.com/ZungleIF/NanachiBot.git
